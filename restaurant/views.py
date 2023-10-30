@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from rest_framework import generics
-from .serializer import MenuSerializer
+from rest_framework import generics, viewsets
+from .serializer import MenuSerializer, BookingSerializer
 from .models import Menu
 
 
@@ -17,3 +17,18 @@ class MenuItemView(generics.ListCreateAPIView):
 class SingleMenuItemView(generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
+    
+
+class BookingViewSet(viewsets.ModelViewSet):
+    queryset = Menu.objects.all()
+    serializer_class = BookingSerializer
+
+'''
+Tips:
+
+To declare the ViewSet class, you can use the following example:
+'''
+# class UserViewSet(viewsets.ModelViewSet):
+#    queryset = User.objects.all() 
+#    serializer_class = UserSerializer
+#    permission_classes = [permissions.IsAuthenticated] 
